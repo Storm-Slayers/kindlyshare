@@ -52,7 +52,7 @@ class _LoginState extends State<Login> {
                         children: <Widget>[
                           Inputbar(
                             onchanged: (val) {
-                              setState(() => email = val);
+                              setState(() => email = val.trim());
                             },
                             label: 'Email',
                             validator: (String value) {
@@ -81,7 +81,7 @@ class _LoginState extends State<Login> {
                             ),
                           ),
                           Ctabutton(
-                            label: 'Log-in',
+                            label: 'Login',
                             ontap: () async {
                               if (formkey.currentState.validate()) {
                                 setState(() => loading = true);

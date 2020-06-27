@@ -1,26 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:kindlyshare/Services/auth.dart';
+import 'package:kindlyshare/screens/requests_list.dart';
+import 'package:kindlyshare/components/bottom_navigation.dart';
 
 class Home extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _MainScreenState createState() => _MainScreenState();
 }
 
-class _HomeState extends State<Home> {
-  final AuthService _auth = AuthService();
+class _MainScreenState extends State<Home> {
+  int _currentIndex = 0;
+
+  final List<Widget> _children =[
+    ListPageTest(),
+    ListPageTest(),
+    ListPageTest(),
+    ListPageTest(),
+  ];
+
+void onTabTapped(int index){
+  setState(() {
+    _currentIndex = index;
+  });
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: Column(
-        children: <Widget>[
-          Text('home screen'),
-          RaisedButton(child : Text('sign out') ,onPressed: (){
-            _auth.signout();
-
-          })
-        ],
-      )),
-      
+      body: _children[_currentIndex],
+      bottomNavigationBar: BottomNav.createBottomNavBar(onTabTapped, _currentIndex),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.pinkAccent,
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+        onPressed: () {},
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked
     );
   }
 }
