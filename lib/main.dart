@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'requests_list.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Text('My App'),
+    return MaterialApp(
+      title: 'Kindlyshare',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: RequestsList(),
     );
   }
 }
