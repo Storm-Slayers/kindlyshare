@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kindlyshare/screens/mainScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,8 +10,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Text('My App'),
+    return MaterialApp(
+      title:'KindlyShare',
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+        visualDensity: VisualDensity.adaptivePlatformDensity
+    ),
+    home: MainScreen(),
     );
   }
 }
