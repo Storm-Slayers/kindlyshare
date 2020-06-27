@@ -17,7 +17,7 @@ class _ListPageTestState extends State<ListPageTest> {
     super.initState();
     _requestlist = Firestore.instance
                   .collection('request_list')
-                  .orderBy('title')
+                  .orderBy('requestTitle')
                   .snapshots();
   }
 
