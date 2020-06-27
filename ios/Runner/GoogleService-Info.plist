@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>201070498902-931p1dh8k2pm0lp34hdsnp993vaebrgl.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.201070498902-931p1dh8k2pm0lp34hdsnp993vaebrgl</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDK3-A48DHPj2jxtjNrYhqDS0wuk_D8lWU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>201070498902</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.kindlyshare</string>
+	<key>PROJECT_ID</key>
+	<string>kindlyshare</string>
+	<key>STORAGE_BUCKET</key>
+	<string>kindlyshare.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:201070498902:ios:d277fde23a6a7715ec57f7</string>
+	<key>DATABASE_URL</key>
+	<string>https://kindlyshare.firebaseio.com</string>
+</dict>
+</plist>
