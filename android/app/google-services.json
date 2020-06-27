@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "201070498902",
+    "firebase_url": "https://kindlyshare.firebaseio.com",
+    "project_id": "kindlyshare",
+    "storage_bucket": "kindlyshare.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:201070498902:android:d913df19059998b1ec57f7",
+        "android_client_info": {
+          "package_name": "com.example.kindlyshare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "201070498902-ec60sqor3lb3glkogmgsm1gnqc30l1em.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjYaJOcq2JEoBgPXdr6MsObWATjL2rpaE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "201070498902-ec60sqor3lb3glkogmgsm1gnqc30l1em.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
