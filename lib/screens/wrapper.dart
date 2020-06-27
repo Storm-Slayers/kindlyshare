@@ -1,6 +1,7 @@
 import 'package:kindlyshare/models/users.dart';
 import 'package:kindlyshare/screens/auth/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:kindlyshare/screens/mainScreen.dart';
 import 'package:provider/provider.dart';
 import 'home/home.dart';
 
@@ -13,7 +14,7 @@ class Wrapper extends StatelessWidget {
       return Authenticate();
     }
     else{
-      return Home();
+      return MainScreen();
     }
   }
   
