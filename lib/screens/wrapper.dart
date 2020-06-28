@@ -11,7 +11,7 @@ class Wrapper extends StatelessWidget {
     final user = Provider.of<User>(context);
     print('user: $user');
     if (user == null) {
-      return WelcomePage(page: Authenticate());
+      return Authenticate();
     } else {
       return Home();
     }
