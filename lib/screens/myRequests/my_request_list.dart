@@ -143,25 +143,6 @@ class _RequestListItemTileState extends State<RequestListItemTile> {
 
   @override
   Widget build(BuildContext context) {
-    // return Ink(
-    //       child: ListTile(
-    //     title: Text(widget.document['requestName'] as String),
-    //     subtitle: Text(widget.document['requestDesc'] as String),
-    //     leading: Container(
-    //       width: 130,
-    //       height: 100,
-    //       child:Container(
-    //         child: Center(child: Row(
-    //           children: [
-    //             Text(widget.document['requestDate'] as String),
-    //           ],
-    //         ),),
-    //       ),
-    //     ),
-    //     onTap: () async {
-    //     },
-    //   ),
-    // );
     return Card(
       color: Colors.white,
       elevation: 5.0,
@@ -191,7 +172,35 @@ class _RequestListItemTileState extends State<RequestListItemTile> {
                     color: Colors.red,
                   ),
                   onTap: () {
-                    deleteRequest(widget.document.documentID);
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        // return object of type Dialog
+                        return AlertDialog(
+                          title: new Text("Delete this request"),
+                          content: new Text(
+                              "Are you sure you want to delete this request permanently?"),
+                          actions: <Widget>[
+                            // usually buttons at the bottom of the dialog
+                            new FlatButton(
+                              child: new Text("CANCEL"),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                            new FlatButton(
+                              child: new Text(
+                                "DELETE",
+                                style: TextStyle(color: Colors.red),
+                              ),
+                              onPressed: () {
+                                deleteRequest(widget.document.documentID);
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
                   },
                 ),
               ],

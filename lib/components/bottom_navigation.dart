@@ -6,7 +6,7 @@ abstract class BottomNav {
     return BottomNavigationBar(
         onTap: action,
         currentIndex: current_index,
-        selectedItemColor: Colors.white,
+        selectedItemColor: AppColors.bottomnav_iccolor,
         backgroundColor: AppColors.bottom_nav_color,
         items: [
           new BottomNavigationBarItem(

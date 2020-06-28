@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:kindlyshare/Services/firestoreService.dart';
 import 'package:kindlyshare/models/requests.dart';
+import 'package:kindlyshare/components/UI_components.dart';
 
 class AddRequestPage extends StatefulWidget {
   final Requests request;
@@ -87,7 +88,12 @@ class _AddRequestPageState extends State<AddRequestPage> {
                 ),
                 RaisedButton(
                     onPressed: () {
-                      createRequest();
+                      _requestListNameController.text.trim() == ""
+                          ? NewAlertDialog.showAlertDialog(
+                              context,
+                              "Write something",
+                              "Insert a value in the title field to save.")
+                          : createRequest();
                     },
                     child: const Text('Submit'))
               ],
