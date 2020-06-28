@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kindlyshare/screens/Profile/Profile.dart';
 import 'package:kindlyshare/screens/wrapper.dart';
 import 'package:provider/provider.dart';
 import 'Services/auth.dart';
@@ -16,10 +17,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Wrapper(),
-        theme: ThemeData(
-          fontFamily: 'Roboto',
-          primarySwatch: Colors.blueGrey
-          ),
+        theme: ThemeData(fontFamily: 'Roboto', primarySwatch: Colors.blueGrey),
       ),
     );
   }
