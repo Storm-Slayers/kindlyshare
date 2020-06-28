@@ -16,10 +16,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Wrapper(),
-        theme: ThemeData(
-            fontFamily: 'Roboto',
-            primarySwatch: Colors.blueGrey,
-            scaffoldBackgroundColor: Colors.grey[200]),
+        theme: ThemeData(fontFamily: 'Roboto', primarySwatch: Colors.blueGrey),
       ),
     );
   }

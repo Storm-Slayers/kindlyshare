@@ -120,8 +120,7 @@ class _RequestListItemTileState extends State<RequestListItemTile> {
       child: ListTile(
         leading: CircleAvatar(
           backgroundColor: AppColors.bottomnav_iccolor,
-          child: Text('Us',
-              style: TextStyle(fontWeight: FontWeight.bold)),
+          child: Text('Us', style: TextStyle(fontWeight: FontWeight.bold)),
         ),
         title: Text(widget.document['requestName'] as String,
             style: TextStyle(fontWeight: FontWeight.bold)),
@@ -136,7 +135,6 @@ class _RequestListItemTileState extends State<RequestListItemTile> {
                 ],
               ),
             ),
-           
           ],
         ),
         onTap: () {},
@@ -148,4 +146,3 @@ class _RequestListItemTileState extends State<RequestListItemTile> {
     return userInitials.substring(0, 2);
   }
 }
-
