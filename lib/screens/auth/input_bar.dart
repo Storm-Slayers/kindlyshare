@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kindlyshare/components/colors.dart';
 
 class Inputbar extends StatefulWidget {
   Inputbar({this.label,this.onchanged, this.icon, this.ontap,this.validator,this.onsave,this.controller});
@@ -62,16 +63,17 @@ class _InputbarState extends State<Inputbar> {
             ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(38)),
-              borderSide: BorderSide(color: Color(0xFFE7A1AD)),
+              borderSide: BorderSide(color: AppColors.button_gradient2),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(38)),
-              borderSide: BorderSide(color: Color(0xFFE7A1AD)),
+              borderSide: BorderSide(color: AppColors.button_gradient2),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(38)),
-              borderSide: BorderSide(color: Color(0xFFE7A1AD)),
+              borderSide: BorderSide(color: AppColors.button_gradient2),
             ),
+            fillColor: Colors.white
           ),
         ),
       ),

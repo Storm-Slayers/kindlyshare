@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:kindlyshare/components/UI_components.dart';
 import 'package:kindlyshare/screens/viewRequest/requestDetail.dart';
 
 class MyList extends StatefulWidget {
@@ -12,6 +13,7 @@ class MyList extends StatefulWidget {
 class _MyListState extends State<MyList> {
   Stream<QuerySnapshot> _requestlist;
   String userID;
+  String title_text = 'Requests list';
 
   getUser() async {
     final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -37,9 +39,7 @@ class _MyListState extends State<MyList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('KindlyShare'),
-      ),
+      appBar: AppBarComponent.createAppBar('My requests'),
       body: StreamBuilder<QuerySnapshot>(
         stream: _requestlist,
         builder: (context, snapshot) {

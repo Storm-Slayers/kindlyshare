@@ -4,6 +4,7 @@ import 'package:kindlyshare/screens/myRequests/my_request_list.dart';
 import 'package:kindlyshare/screens/new_request/add_request.dart';
 import 'package:kindlyshare/screens/requests_list.dart';
 import 'package:kindlyshare/components/bottom_navigation.dart';
+import 'package:kindlyshare/components/colors.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -31,8 +32,13 @@ void onTabTapped(int index){
     return Scaffold(
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNav.createBottomNavBar(onTabTapped, _currentIndex),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.pinkAccent,
+      floatingActionButton: 
+      Container(
+        height: 70.0,
+        width: 70.0,
+        child: FittedBox(
+      child: FloatingActionButton(
+        backgroundColor: AppColors.button_gradient2,
         child: const Icon(
           Icons.add,
           color: Colors.white,
@@ -40,6 +46,7 @@ void onTabTapped(int index){
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddRequestPage(Requests('','','',''))));
         },
+      ),),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked
     );
