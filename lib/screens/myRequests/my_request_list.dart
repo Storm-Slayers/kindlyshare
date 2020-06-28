@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:kindlyshare/Services/firestoreService.dart';
 import 'package:kindlyshare/components/UI_components.dart';
 import 'package:kindlyshare/screens/viewRequest/requestDetail.dart';
 import 'package:kindlyshare/components/colors.dart';
@@ -126,6 +127,14 @@ class RequestListItemTile extends StatefulWidget {
 }
 
 class _RequestListItemTileState extends State<RequestListItemTile> {
+  FirestoreService storeService = new FirestoreService();
+
+  deleteRequest(String requestID) {
+    storeService.removeRequest(requestID).then((_) {
+      Navigator.pop(context);
+    });
+  }
+
   pushRequestDetails() {
     Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => RequestDetail(reqDetail: widget.document)));
@@ -180,7 +189,9 @@ class _RequestListItemTileState extends State<RequestListItemTile> {
                     Icons.delete,
                     color: Colors.red,
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    deleteRequest(widget.document.documentID);
+                  },
                 ),
               ],
             )),
