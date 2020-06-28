@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kindlyshare/models/requests.dart';
+import 'package:kindlyshare/screens/new_request/add_request.dart';
 import 'package:kindlyshare/screens/requests_list.dart';
 import 'package:kindlyshare/components/bottom_navigation.dart';
 
@@ -34,7 +36,9 @@ void onTabTapped(int index){
           Icons.add,
           color: Colors.white,
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddRequestPage(Requests('','',''))));
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked
     );
