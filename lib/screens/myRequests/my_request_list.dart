@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kindlyshare/components/UI_components.dart';
 import 'package:kindlyshare/screens/viewRequest/requestDetail.dart';
+import 'package:kindlyshare/components/colors.dart';
 
 class MyList extends StatefulWidget {
   @override
@@ -132,26 +133,60 @@ class _RequestListItemTileState extends State<RequestListItemTile> {
 
   @override
   Widget build(BuildContext context) {
-    return Ink(
+    // return Ink(
+    //       child: ListTile(
+    //     title: Text(widget.document['requestName'] as String),
+    //     subtitle: Text(widget.document['requestDesc'] as String),
+    //     leading: Container(
+    //       width: 130,
+    //       height: 100,
+    //       child:Container(
+    //         child: Center(child: Row(
+    //           children: [
+    //             Text(widget.document['requestDate'] as String),
+    //           ],
+    //         ),),
+    //       ),
+    //     ),
+    //     onTap: () async {
+    //     },
+    //   ),
+    // );
+    return Card(
+      color: Colors.white,
+      elevation: 5.0,
       child: ListTile(
-        title: Text(widget.document['requestName'] as String),
-        subtitle: Text(widget.document['requestDesc'] as String),
-        leading: Container(
-          width: 130,
-          height: 100,
-          child: Container(
-            child: Center(
+        title: Text(widget.document['requestName'] as String,
+            style: TextStyle(fontWeight: FontWeight.bold)),
+        subtitle: Text(widget.document['requestDate'] as String),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Center(
               child: Row(
                 children: [
-                  Text(widget.document['requestDate'] as String),
+                  Text(widget.document['requestDesc'] as String),
                 ],
               ),
             ),
-          ),
+            SizedBox(
+              width: 40,
+            ),
+            Center(
+                child: Row(
+              children: <Widget>[
+                GestureDetector(
+                  child: Icon(
+                    Icons.delete,
+                    color: Colors.red,
+                  ),
+                  onTap: () {},
+                ),
+              ],
+            )),
+          ],
         ),
-        onTap: () async {
-          pushRequestDetails();
-        },
+        onTap: () {},
       ),
     );
   }
