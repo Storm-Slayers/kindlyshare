@@ -14,41 +14,44 @@ class Home extends StatefulWidget {
 class _MainScreenState extends State<Home> {
   int _currentIndex = 0;
 
-  final List<Widget> _children =[
+  final List<Widget> _children = [
     ListPageTest(),
     MyList(),
     ListPageTest(),
     ListPageTest(),
   ];
 
-void onTabTapped(int index){
-  setState(() {
-    _currentIndex = index;
-  });
-}
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _children[_currentIndex],
-      bottomNavigationBar: BottomNav.createBottomNavBar(onTabTapped, _currentIndex),
-      floatingActionButton: 
-      Container(
-        height: 70.0,
-        width: 70.0,
-        child: FittedBox(
-      child: FloatingActionButton(
-        backgroundColor: AppColors.button_gradient2,
-        child: const Icon(
-          Icons.add,
-          color: Colors.white,
+        body: _children[_currentIndex],
+        bottomNavigationBar:
+            BottomNav.createBottomNavBar(onTabTapped, _currentIndex),
+        floatingActionButton: Container(
+          height: 70.0,
+          width: 70.0,
+          child: FittedBox(
+            child: FloatingActionButton(
+              backgroundColor: AppColors.bottomnav_iccolor,
+              child: const Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) =>
+                        AddRequestPage(Requests('', '', '', ''))));
+              },
+            ),
+          ),
         ),
-        onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddRequestPage(Requests('','','',''))));
-        },
-      ),),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked
-    );
+        floatingActionButtonLocation:
+            FloatingActionButtonLocation.centerDocked);
   }
 }

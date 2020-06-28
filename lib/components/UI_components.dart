@@ -78,3 +78,24 @@ abstract class AppBarComponent {
     );
   }
 }
+
+abstract class NewAlertDialog {
+  static showAlertDialog(
+      BuildContext context, String alertTitle, String alertText) {
+    AlertDialog alert = AlertDialog(
+      title: new Text(alertTitle),
+      content: new Text(alertText),
+      actions: <Widget>[
+        // usually buttons at the bottom of the dialog
+        new FlatButton(
+          child: new Text("OK"),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ],
+    );
+
+    showDialog(context: context, builder: (_) => alert);
+  }
+}

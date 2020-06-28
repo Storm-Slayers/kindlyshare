@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kindlyshare/components/UI_components.dart';
+import 'package:kindlyshare/components/colors.dart';
 
 class MyList extends StatefulWidget {
   @override
@@ -9,44 +10,41 @@ class MyList extends StatefulWidget {
 }
 
 class _MyListState extends State<MyList> {
-
   Stream<QuerySnapshot> _requestlist;
-  String title_text  = 'Requests list';
+  String title_text = 'Requests list';
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     _requestlist = Firestore.instance
-                  .collection('request_list')
-                  .orderBy('requestName')
-                  .where('userID', isEqualTo: 'test')
-                  .snapshots();
+        .collection('request_list')
+        .orderBy('requestName')
+        .where('userID', isEqualTo: 'test')
+        .snapshots();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarComponent.createAppBar('My requests'),
-    body: StreamBuilder<QuerySnapshot>(
-      stream: _requestlist,
-      builder: (context, snapshot){
-        if(snapshot.hasError){
-          return Center(child: Text('Error: ${snapshot.error}'));
-        }
+      body: StreamBuilder<QuerySnapshot>(
+        stream: _requestlist,
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          }
 
-        if(!snapshot.hasData){
-          return Center(child: const Text('Loading...'));
-        }
+          if (!snapshot.hasData) {
+            return Center(child: const Text('Loading...'));
+          }
 
-        return Stack (
-          children: [
-            RequestList(documents: snapshot.data.documents),
-          ],
-        );
-      
-      },
-    ),
-      
+          return Stack(
+            children: [
+              RequestList(documents: snapshot.data.documents),
+            ],
+          );
+        },
+      ),
     );
   }
 }
@@ -55,10 +53,9 @@ class RequestList extends StatelessWidget {
   const RequestList({
     Key key,
     @required this.documents,
-  }) : super(key:key);
+  }) : super(key: key);
 
   final List<DocumentSnapshot> documents;
-
 
   @override
   Widget build(BuildContext context) {
@@ -69,12 +66,12 @@ class RequestList extends StatelessWidget {
 }
 
 class RequestListItems extends StatelessWidget {
-  const RequestListItems ({
+  const RequestListItems({
     Key key,
     @required this.documents,
-  }) : super (key:key);
+  }) : super(key: key);
 
-final List<DocumentSnapshot> documents;
+  final List<DocumentSnapshot> documents;
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +93,6 @@ final List<DocumentSnapshot> documents;
           ),
         );
       },
-      
     );
   }
 }
@@ -116,27 +112,73 @@ class RequestListItemTile extends StatefulWidget {
 }
 
 class _RequestListItemTileState extends State<RequestListItemTile> {
- 
-
   @override
   Widget build(BuildContext context) {
-    return Ink(
-          child: ListTile(
-        title: Text(widget.document['requestName'] as String),
-        subtitle: Text(widget.document['requestDesc'] as String),
-        leading: Container(
-          width: 130,
-          height: 100,
-          child:Container(
-            child: Center(child: Row(
-              children: [
-                Text(widget.document['requestDate'] as String),
+    return Card(
+      color: Colors.white,
+      elevation: 5.0,
+      child: ListTile(
+        title: Text(widget.document['requestName'] as String,
+            style: TextStyle(fontWeight: FontWeight.bold)),
+        subtitle: Text(widget.document['requestDate'] as String),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Center(
+              child: Row(
+                children: [
+                  Text(widget.document['requestDesc'] as String),
+                ],
+              ),
+            ),
+            SizedBox(
+              width: 40,
+            ),
+            Center(
+                child: Row(
+              children: <Widget>[
+                GestureDetector(
+                  child: Icon(
+                    Icons.delete,
+                    color: Colors.red,
+                  ),
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        // return object of type Dialog
+                        return AlertDialog(
+                          title: new Text("Delete this request"),
+                          content: new Text(
+                              "Are you sure you want to delete this request permanently?"),
+                          actions: <Widget>[
+                            // usually buttons at the bottom of the dialog
+                            new FlatButton(
+                              child: new Text("CANCEL"),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                            new FlatButton(
+                              child: new Text(
+                                "DELETE",
+                                style: TextStyle(color: Colors.red),
+                              ),
+                              onPressed: () {
+                                //TODO add delete method
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                ),
               ],
-            ),),
-          ),
+            )),
+          ],
         ),
-        onTap: () async {
-        },
+        onTap: () {},
       ),
     );
   }

@@ -11,43 +11,40 @@ class ListPageTest extends StatefulWidget {
 }
 
 class _ListPageTestState extends State<ListPageTest> {
-
   Stream<QuerySnapshot> _requestlist;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     _requestlist = Firestore.instance
-                  .collection('request_list')
-                  .orderBy('requestName')
-                  .snapshots();
+        .collection('request_list')
+        .orderBy('requestName')
+        .snapshots();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarComponent.createAppBar('Requests list'),
-    backgroundColor: AppColors.bg_color,
-    body: StreamBuilder<QuerySnapshot>(
-      stream: _requestlist,
-      builder: (context, snapshot){
-        if(snapshot.hasError){
-          return Center(child: Text('Error: ${snapshot.error}'));
-        }
+      backgroundColor: AppColors.bg_color,
+      body: StreamBuilder<QuerySnapshot>(
+        stream: _requestlist,
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          }
 
-        if(!snapshot.hasData){
-          return Center(child: const Text('Loading...'));
-        }
+          if (!snapshot.hasData) {
+            return Center(child: const Text('Loading...'));
+          }
 
-        return Stack (
-          children: [
-            RequestList(documents: snapshot.data.documents),
-          ],
-        );
-      
-      },
-    ),
-      
+          return Stack(
+            children: [
+              RequestList(documents: snapshot.data.documents),
+            ],
+          );
+        },
+      ),
     );
   }
 }
@@ -56,10 +53,9 @@ class RequestList extends StatelessWidget {
   const RequestList({
     Key key,
     @required this.documents,
-  }) : super(key:key);
+  }) : super(key: key);
 
   final List<DocumentSnapshot> documents;
-
 
   @override
   Widget build(BuildContext context) {
@@ -70,12 +66,12 @@ class RequestList extends StatelessWidget {
 }
 
 class RequestListItems extends StatelessWidget {
-  const RequestListItems ({
+  const RequestListItems({
     Key key,
     @required this.documents,
-  }) : super (key:key);
+  }) : super(key: key);
 
-final List<DocumentSnapshot> documents;
+  final List<DocumentSnapshot> documents;
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +93,6 @@ final List<DocumentSnapshot> documents;
           ),
         );
       },
-      
     );
   }
 }
@@ -117,28 +112,37 @@ class RequestListItemTile extends StatefulWidget {
 }
 
 class _RequestListItemTileState extends State<RequestListItemTile> {
- 
-
   @override
   Widget build(BuildContext context) {
-    return Ink(
-          child: ListTile(
-        title: Text(widget.document['requestName'] as String),
-        subtitle: Text(widget.document['requestDesc'] as String),
-        leading: Container(
-          width: 130,
-          height: 100,
-          child:Container(
-            child: Center(child: Row(
-              children: [
-                Text(widget.document['requestDate'] as String),
-              ],
-            ),),
-          ),
+    return Card(
+      color: Colors.white,
+      elevation: 100.0,
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: AppColors.bottomnav_iccolor,
+          child: Text('Us', style: TextStyle(fontWeight: FontWeight.bold)),
         ),
-        onTap: () async {
-        },
+        title: Text(widget.document['requestName'] as String,
+            style: TextStyle(fontWeight: FontWeight.bold)),
+        subtitle: Text(widget.document['requestDate'] as String),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Center(
+              child: Row(
+                children: [
+                  Text(widget.document['requestDesc'] as String),
+                ],
+              ),
+            ),
+          ],
+        ),
+        onTap: () {},
       ),
     );
+  }
+
+  getUserFirstLetter(String userInitials) {
+    return userInitials.substring(0, 2);
   }
 }
