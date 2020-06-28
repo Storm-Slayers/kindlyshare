@@ -136,21 +136,7 @@ class _RequestListItemTileState extends State<RequestListItemTile> {
                 ],
               ),
             ),
-            SizedBox(
-              width: 40,
-            ),
-            Center(
-                child: Row(
-              children: <Widget>[
-                GestureDetector(
-                  child: Icon(
-                    Icons.delete,
-                    color: Colors.red,
-                  ),
-                  onTap: () {},
-                ),
-              ],
-            )),
+           
           ],
         ),
         onTap: () {},
