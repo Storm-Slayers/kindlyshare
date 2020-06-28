@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kindlyshare/models/requests.dart';
+import 'package:kindlyshare/screens/myRequests/my_request_list.dart';
 import 'package:kindlyshare/screens/new_request/add_request.dart';
 import 'package:kindlyshare/screens/requests_list.dart';
 import 'package:kindlyshare/components/bottom_navigation.dart';
@@ -14,7 +15,7 @@ class _MainScreenState extends State<Home> {
 
   final List<Widget> _children =[
     ListPageTest(),
-    ListPageTest(),
+    MyList(),
     ListPageTest(),
     ListPageTest(),
   ];
@@ -37,7 +38,7 @@ void onTabTapped(int index){
           color: Colors.white,
         ),
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddRequestPage(Requests('','',''))));
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddRequestPage(Requests('','','',''))));
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked

@@ -6,11 +6,11 @@ final CollectionReference requestCollection = Firestore.instance.collection('req
 
 class FirestoreService {
 
-  Future<Requests> createRequest(String requestName, String requestDesc, String requestDate) async {
+  Future<Requests> createRequest(String requestName, String requestDesc, String requestDate, String userID) async {
     final TransactionHandler newTransaction = (Transaction tx) async {
       final DocumentSnapshot snapshot = await tx.get(requestCollection.document());
 
-      final Requests request = Requests(requestName,requestDesc,requestDate);
+      final Requests request = Requests(requestName,requestDesc,requestDate,userID);
       final Map<String,dynamic> data = request.toMap();
 
       await tx.set(snapshot.reference, data);
