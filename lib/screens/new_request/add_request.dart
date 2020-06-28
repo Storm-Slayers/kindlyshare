@@ -21,7 +21,7 @@ class _AddRequestPageState extends State<AddRequestPage> {
   TextEditingController _requestListDescController;
 
   createRequest(){
-    storeService.createRequest(_requestListNameController.text,_requestListDateController.text,_requestListDescController.text).then((_) {
+    storeService.createRequest(_requestListNameController.text,_requestListDateController.text,_requestListDescController.text, 'test').then((_) {
                            Navigator.pop(context);
                           });
   }
