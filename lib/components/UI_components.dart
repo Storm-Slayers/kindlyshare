@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'colors.dart';
+import 'package:kindlyshare/Services/auth.dart';
 
 abstract class GradientButton {
   static createGradientButton(String text, action()) {
@@ -41,5 +42,39 @@ abstract class GradientButton {
         ),
       ),
     );
+  }
+}
+
+
+abstract class AppBarComponent {
+static AuthService _auth = AuthService();
+
+  static void handleClick(String value) {
+    switch (value) {
+      case 'Logout':
+        _auth.signout();
+        break;
+      case 'User profile':
+        break;
+    }
+}
+
+  static createAppBar(String title_text) {
+    return AppBar(
+        title: Text(title_text),
+        actions: <Widget>[
+          PopupMenuButton<String>(
+            onSelected: handleClick,
+            itemBuilder: (BuildContext context) {
+              return {'Logout', 'User profile'}.map((String choice) {
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
+            },
+          ),
+        ],
+      );
   }
 }

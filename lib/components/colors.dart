@@ -10,7 +10,7 @@ abstract class AppColors {
 
   static const Color bottom_nav_color = Color(0xFFd5d3dd);
 
-    static const Color bottomnav_iccolor = Color(0xFF9aa7d1);
+  static const Color bottomnav_iccolor = Color(0xFF9aa7d1);
 
   
 }

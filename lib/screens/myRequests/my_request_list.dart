@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:kindlyshare/components/UI_components.dart';
 
 class MyList extends StatefulWidget {
   @override
@@ -11,6 +11,7 @@ class MyList extends StatefulWidget {
 class _MyListState extends State<MyList> {
 
   Stream<QuerySnapshot> _requestlist;
+  String title_text  = 'Requests list';
 
   @override
   void initState(){
@@ -25,9 +26,7 @@ class _MyListState extends State<MyList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('KindlyShare'),
-      ),
+      appBar: AppBarComponent.createAppBar('My requests'),
     body: StreamBuilder<QuerySnapshot>(
       stream: _requestlist,
       builder: (context, snapshot){

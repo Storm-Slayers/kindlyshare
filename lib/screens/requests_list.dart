@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:kindlyshare/components/colors.dart';
+import 'package:kindlyshare/components/UI_components.dart';
+import 'package:kindlyshare/loading.dart';
 
 class ListPageTest extends StatefulWidget {
   @override
@@ -24,9 +26,8 @@ class _ListPageTestState extends State<ListPageTest> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('KindlyShare'),
-      ),
+      appBar: AppBarComponent.createAppBar('Requests list'),
+    backgroundColor: AppColors.bg_color,
     body: StreamBuilder<QuerySnapshot>(
       stream: _requestlist,
       builder: (context, snapshot){
