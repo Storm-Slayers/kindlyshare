@@ -4,6 +4,7 @@ import 'package:kindlyshare/screens/auth/ctabutton.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kindlyshare/Services/auth.dart';
+import 'package:kindlyshare/components/colors.dart';
 
 import '../../loading.dart';
 
@@ -40,6 +41,7 @@ class _RegisterState extends State<Register> {
       child: SafeArea(
         child: Scaffold(
           resizeToAvoidBottomInset: true,
+          backgroundColor: AppColors.bg_color,
           body: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -108,7 +110,7 @@ class _RegisterState extends State<Register> {
                     ),
                     SizedBox(height: 15.0),
                     Ctabutton(
-                      label: 'Login',
+                      label: 'back',
                       ontap: () {
                         widget.toggleView();
                       },

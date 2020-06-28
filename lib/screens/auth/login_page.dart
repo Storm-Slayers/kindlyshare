@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kindlyshare/components/colors.dart';
 import 'package:kindlyshare/screens/auth/input_bar.dart';
 import 'package:kindlyshare/screens/auth/ctabutton.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -36,6 +37,7 @@ class _LoginState extends State<Login> {
             child: SafeArea(
               child: Scaffold(
                 resizeToAvoidBottomInset: true,
+                backgroundColor: AppColors.bg_color,
                 body: SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -80,6 +82,9 @@ class _LoginState extends State<Login> {
                               color: Colors.grey,
                             ),
                           ),
+                          SizedBox(
+                            height: 20,
+                          ),
                           Ctabutton(
                             label: 'Login',
                             ontap: () async {
@@ -98,9 +103,6 @@ class _LoginState extends State<Login> {
                                 }
                               }
                             },
-                          ),
-                          SizedBox(
-                            height: 15,
                           ),
                           Ctabutton(
                             label: 'Create Account',
