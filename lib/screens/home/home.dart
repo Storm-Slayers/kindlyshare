@@ -38,7 +38,7 @@ void onTabTapped(int index){
         width: 70.0,
         child: FittedBox(
       child: FloatingActionButton(
-        backgroundColor: AppColors.button_gradient2,
+        backgroundColor: AppColors.bottomnav_iccolor,
         child: const Icon(
           Icons.add,
           color: Colors.white,
