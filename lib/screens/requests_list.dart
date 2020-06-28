@@ -17,7 +17,7 @@ class _ListPageTestState extends State<ListPageTest> {
     super.initState();
     _requestlist = Firestore.instance
                   .collection('request_list')
-                  .orderBy('title')
+                  .orderBy('requestName')
                   .snapshots();
   }
 
@@ -122,15 +122,15 @@ class _RequestListItemTileState extends State<RequestListItemTile> {
   Widget build(BuildContext context) {
     return Ink(
           child: ListTile(
-        title: Text(widget.document['requestTitle'] as String),
-        subtitle: Text(widget.document['description'] as String),
+        title: Text(widget.document['requestName'] as String),
+        subtitle: Text(widget.document['requestDesc'] as String),
         leading: Container(
           width: 130,
           height: 100,
           child:Container(
             child: Center(child: Row(
               children: [
-                Text('Other Text:'),
+                Text(widget.document['requestDate'] as String),
               ],
             ),),
           ),
