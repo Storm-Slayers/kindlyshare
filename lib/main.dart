@@ -17,9 +17,9 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: Wrapper(),
         theme: ThemeData(
-          fontFamily: 'Roboto',
-          primarySwatch: Colors.blueGrey
-          ),
+            fontFamily: 'Roboto',
+            primarySwatch: Colors.blueGrey,
+            scaffoldBackgroundColor: Colors.grey[200]),
       ),
     );
   }

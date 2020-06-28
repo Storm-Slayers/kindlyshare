@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kindlyshare/Services/firestoreService.dart';
 import 'package:kindlyshare/components/UI_components.dart';
+import 'package:kindlyshare/screens/requestDetailsPage/requestDetailsPage.dart';
 import 'package:kindlyshare/screens/viewRequest/requestDetail.dart';
 import 'package:kindlyshare/components/colors.dart';
 
@@ -137,7 +138,7 @@ class _RequestListItemTileState extends State<RequestListItemTile> {
 
   pushRequestDetails() {
     Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => RequestDetail(reqDetail: widget.document)));
+        builder: (context) => RequestDetailsPage(data: widget.document)));
   }
 
   @override
@@ -197,7 +198,9 @@ class _RequestListItemTileState extends State<RequestListItemTile> {
             )),
           ],
         ),
-        onTap: () {},
+        onTap: () {
+          pushRequestDetails();
+        },
       ),
     );
   }
