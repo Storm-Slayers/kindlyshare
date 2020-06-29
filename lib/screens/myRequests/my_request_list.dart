@@ -175,7 +175,7 @@ class _RequestListItemTileState extends State<RequestListItemTile> {
   Widget build(BuildContext context) {
     return Card(
       color: Colors.white,
-      elevation: 5.0,
+      elevation: 100.0,
       child: ListTile(
         title: Text(widget.document['requestName'] as String,
             style: TextStyle(fontWeight: FontWeight.bold)),

@@ -6,7 +6,7 @@ abstract class BottomNav {
     return BottomNavigationBar(
       onTap: action,
       currentIndex: current_index,
-      selectedItemColor: AppColors.bottomnav_iccolor,
+      selectedItemColor: AppColors.button_gradient2,
       backgroundColor: AppColors.bottom_nav_color,
       items: [
         new BottomNavigationBarItem(
@@ -14,7 +14,7 @@ abstract class BottomNav {
             shaderCallback: (Rect bounds) {
               return RadialGradient(
                 center: Alignment.topLeft,
-                radius: 0.6,
+                radius:2,
                 colors: <Color>[AppColors.bottomnav_iccolor, Colors.pink],
                 tileMode: TileMode.repeated,
               ).createShader(bounds);
@@ -31,7 +31,7 @@ abstract class BottomNav {
               shaderCallback: (Rect bounds) {
                 return RadialGradient(
                   center: Alignment.topLeft,
-                  radius: 0.6,
+                  radius: 2,
                   colors: <Color>[AppColors.bottomnav_iccolor, Colors.pink],
                   tileMode: TileMode.repeated,
                 ).createShader(bounds);

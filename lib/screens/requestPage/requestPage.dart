@@ -5,6 +5,8 @@ import 'package:kindlyshare/models/request_dummy.dart';
 import 'package:kindlyshare/models/requests.dart';
 import 'package:kindlyshare/screens/requestDetailsPage/requestDetailsPage.dart';
 import 'package:kindlyshare/screens/requests_list.dart';
+import 'package:kindlyshare/components/colors.dart';
+import 'package:kindlyshare/components/UI_components.dart';
 
 class RequestsPage extends StatefulWidget {
   @override
@@ -26,6 +28,7 @@ class _RequestsPageState extends State<RequestsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //appBar: AppBarComponent.createAppBar('KidlyShare'),
       body: StreamBuilder<QuerySnapshot>(
           stream: _requestlist,
           builder: (context, snapshot) {
@@ -38,31 +41,40 @@ class _RequestsPageState extends State<RequestsPage> {
             }
             return SafeArea(
               child: ListView(
-                padding: EdgeInsets.symmetric(vertical: 30.0),
+                padding: EdgeInsets.symmetric(vertical: 40.0),
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 20.0, right: 120.0),
                     child: Text(
                       'How can you help today?',
                       style: TextStyle(
-                          fontSize: 30.0, fontWeight: FontWeight.bold),
+                          fontSize: 38.0, fontWeight: FontWeight.bold),
                     ),
                   ),
                   SizedBox(
-                    height: 20.0,
+                    height: 40.0,
                   ),
                   FilterTabBar(),
                   SizedBox(
                     height: 20.0,
                   ),
-                  LatestRequests(
-                    documents: snapshot.data.documents,
-                    header: 'Latest Requests',
+                  Container(
+                    padding: const EdgeInsets.only(top: 20.00, bottom: 10.00),
+                    child: LatestRequests(
+                      documents: snapshot.data.documents,
+                      header: 'Latest Requests',
+                    ),
                   ),
-                  LatestRequests(
-                    header: 'Featured Requests',
-                    documents: snapshot.data.documents,
-                    isFeatured: true,
+                  Container(
+                    padding: const EdgeInsets.only(top: 40.00, bottom: 20.00),
+                    decoration: BoxDecoration(
+                      color: Color(0xFFcac3e5),
+                    ),
+                    child: LatestRequests(
+                      header: 'Featured Requests',
+                      documents: snapshot.data.documents,
+                      isFeatured: true,
+                    ),
                   ),
                 ],
               ),
@@ -93,16 +105,26 @@ class _FilterTabBarState extends State<FilterTabBar> {
           _selectedIconIndex = index;
         });
       },
-      child: Container(
-        height: 60.0,
-        width: 60.0,
-        decoration: BoxDecoration(
-          color: _selectedIconIndex == index
-              ? Theme.of(context).accentColor
-              : Colors.grey[400],
-          borderRadius: BorderRadius.circular(30.0),
+      child: ShaderMask(
+        shaderCallback: (Rect bounds) {
+          return RadialGradient(
+            center: Alignment.topLeft,
+            radius: 2,
+            colors: <Color>[AppColors.bottomnav_iccolor, Colors.pink],
+            tileMode: TileMode.repeated,
+          ).createShader(bounds);
+        },
+        child: Container(
+          height: 60.0,
+          width: 60.0,
+          decoration: BoxDecoration(
+            color: _selectedIconIndex == index
+                ? AppColors.button_gradient1
+                : Colors.grey[400],
+            borderRadius: BorderRadius.circular(30.0),
+          ),
+          child: Icon(_icons[index], size: 25.0, color: Colors.white),
         ),
-        child: Icon(_icons[index], size: 25.0, color: Colors.white),
       ),
     );
   }
@@ -145,6 +167,7 @@ class LatestRequests extends StatelessWidget {
               Text(
                 header,
                 style: TextStyle(
+                    color: AppColors.button_gradient2,
                     fontSize: 22.0,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1.5),

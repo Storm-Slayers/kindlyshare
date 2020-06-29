@@ -40,6 +40,7 @@ class _MainScreenState extends State<Home> {
           child: FittedBox(
             child: FloatingActionButton(
               backgroundColor: AppColors.button_gradient2,
+              elevation: 10,
               child: const Icon(
                 Icons.add,
                 color: Colors.white,
