@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kindlyshare/components/colors.dart';
 import 'package:kindlyshare/components/UI_components.dart';
-import 'package:kindlyshare/loading.dart';
+import 'package:kindlyshare/Services/auth.dart';
+import 'package:kindlyshare/screens/Profile/Profile.dart';
 
 class ListPageTest extends StatefulWidget {
   @override
@@ -12,6 +13,7 @@ class ListPageTest extends StatefulWidget {
 
 class _ListPageTestState extends State<ListPageTest> {
   Stream<QuerySnapshot> _requestlist;
+  static AuthService _auth = AuthService();
 
   @override
   void initState() {
@@ -24,8 +26,35 @@ class _ListPageTestState extends State<ListPageTest> {
 
   @override
   Widget build(BuildContext context) {
+    void handleClick(String value) {
+      switch (value) {
+        case 'Logout':
+          _auth.signout();
+          break;
+        case 'User profile':
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => Profile()));
+          break;
+      }
+    }
+
     return Scaffold(
-      appBar: AppBarComponent.createAppBar('Requests list'),
+      appBar: AppBar(
+        title: Text('Requests list'),
+        actions: <Widget>[
+          PopupMenuButton<String>(
+            onSelected: handleClick,
+            itemBuilder: (BuildContext context) {
+              return {'Logout', 'User profile'}.map((String choice) {
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
+            },
+          ),
+        ],
+      ),
       backgroundColor: AppColors.bg_color,
       body: StreamBuilder<QuerySnapshot>(
         stream: _requestlist,

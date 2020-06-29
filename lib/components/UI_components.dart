@@ -55,6 +55,7 @@ abstract class AppBarComponent {
         _auth.signout();
         break;
       case 'User profile':
+      
         break;
     }
   }

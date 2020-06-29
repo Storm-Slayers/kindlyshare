@@ -7,6 +7,8 @@ import 'package:kindlyshare/components/UI_components.dart';
 import 'package:kindlyshare/screens/requestDetailsPage/requestDetailsPage.dart';
 import 'package:kindlyshare/screens/viewRequest/requestDetail.dart';
 import 'package:kindlyshare/components/colors.dart';
+import 'package:kindlyshare/Services/auth.dart';
+import 'package:kindlyshare/screens/Profile/Profile.dart';
 
 class MyList extends StatefulWidget {
   @override
@@ -17,6 +19,7 @@ class _MyListState extends State<MyList> {
   Stream<QuerySnapshot> _requestlist;
   String userID;
   String title_text = 'Requests list';
+  static AuthService _auth = AuthService();
 
   getUser() async {
     final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -41,8 +44,35 @@ class _MyListState extends State<MyList> {
 
   @override
   Widget build(BuildContext context) {
+    void handleClick(String value) {
+      switch (value) {
+        case 'Logout':
+          _auth.signout();
+          break;
+        case 'User profile':
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => Profile()));
+          break;
+      }
+    }
+
     return Scaffold(
-      appBar: AppBarComponent.createAppBar('My requests'),
+      appBar: AppBar(
+        title: Text('Requests list'),
+        actions: <Widget>[
+          PopupMenuButton<String>(
+            onSelected: handleClick,
+            itemBuilder: (BuildContext context) {
+              return {'Logout', 'User profile'}.map((String choice) {
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
+            },
+          ),
+        ],
+      ),
       body: StreamBuilder<QuerySnapshot>(
         stream: _requestlist,
         builder: (context, snapshot) {
