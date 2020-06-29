@@ -124,14 +124,14 @@ class _RequestListItemTileState extends State<RequestListItemTile> {
         ),
         title: Text(widget.document['requestName'] as String,
             style: TextStyle(fontWeight: FontWeight.bold)),
-        subtitle: Text(widget.document['requestDate'] as String),
+        subtitle: Text(widget.document['requestDesc'] as String),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Center(
               child: Row(
                 children: [
-                  Text(widget.document['requestDesc'] as String),
+                  Text(widget.document['requestDate'] as String),
                 ],
               ),
             ),

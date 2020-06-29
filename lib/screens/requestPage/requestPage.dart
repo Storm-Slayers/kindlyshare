@@ -5,6 +5,7 @@ import 'package:kindlyshare/models/request_dummy.dart';
 import 'package:kindlyshare/models/requests.dart';
 import 'package:kindlyshare/screens/requestDetailsPage/requestDetailsPage.dart';
 import 'package:kindlyshare/screens/requests_list.dart';
+import 'package:kindlyshare/components/colors.dart';
 
 class RequestsPage extends StatefulWidget {
   @override
@@ -59,11 +60,18 @@ class _RequestsPageState extends State<RequestsPage> {
                     documents: snapshot.data.documents,
                     header: 'Latest Requests',
                   ),
-                  LatestRequests(
+                  Container(
+                    padding: const EdgeInsets.only(top: 20.00, bottom: 20.00),
+                    decoration: BoxDecoration(
+                      color: Color(0xFFcac3e5),
+                    ),
+                    child: LatestRequests(
                     header: 'Featured Requests',
                     documents: snapshot.data.documents,
                     isFeatured: true,
                   ),
+                  ),
+                  
                 ],
               ),
             );
@@ -93,16 +101,26 @@ class _FilterTabBarState extends State<FilterTabBar> {
           _selectedIconIndex = index;
         });
       },
-      child: Container(
-        height: 60.0,
-        width: 60.0,
-        decoration: BoxDecoration(
-          color: _selectedIconIndex == index
-              ? Theme.of(context).accentColor
-              : Colors.grey[400],
-          borderRadius: BorderRadius.circular(30.0),
+      child: ShaderMask(
+        shaderCallback: (Rect bounds) {
+          return RadialGradient(
+            center: Alignment.topLeft,
+            radius: 2,
+            colors: <Color>[AppColors.bottomnav_iccolor, Colors.pink],
+            tileMode: TileMode.repeated,
+          ).createShader(bounds);
+        },
+        child: Container(
+          height: 60.0,
+          width: 60.0,
+          decoration: BoxDecoration(
+            color: _selectedIconIndex == index
+                ? AppColors.button_gradient1
+                : Colors.grey[400],
+            borderRadius: BorderRadius.circular(30.0),
+          ),
+          child: Icon(_icons[index], size: 25.0, color: Colors.white),
         ),
-        child: Icon(_icons[index], size: 25.0, color: Colors.white),
       ),
     );
   }
@@ -145,6 +163,7 @@ class LatestRequests extends StatelessWidget {
               Text(
                 header,
                 style: TextStyle(
+                    color: AppColors.button_gradient2,
                     fontSize: 22.0,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1.5),
@@ -187,7 +206,7 @@ class FeaturedCarousel extends StatelessWidget {
       height: 300.0,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 5,
+        itemCount: 3,
         itemBuilder: (context, index) {
           return LatestRequestTile(
             document: documents[index],

@@ -67,14 +67,14 @@ class _AddRequestPageState extends State<AddRequestPage> {
               padding: EdgeInsets.only(left: 16.0, right: 16.0),
               child: TextField(
                 controller: _requestListDateController,
-                decoration: InputDecoration(labelText: 'Date: '),
+                decoration: InputDecoration(labelText: 'Description: '),
               ),
             ),
             Padding(
               padding: EdgeInsets.only(left: 16.0, right: 16.0),
               child: TextField(
                 controller: _requestListDescController,
-                decoration: InputDecoration(labelText: 'Description: '),
+                decoration: InputDecoration(labelText: 'Date: '),
               ),
             ),
             Row(

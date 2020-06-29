@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kindlyshare/models/request_dummy.dart';
+import 'package:kindlyshare/components/colors.dart';
 
 class RequestDetailsPage extends StatefulWidget {
   final DocumentSnapshot data;
@@ -27,7 +28,18 @@ class _RequestDetailsPageState extends State<RequestDetailsPage> {
             date: widget.data['requestDate'] as String,
           ),
           Expanded(
-            child: Container(
+            
+              
+              child: ShaderMask(
+              shaderCallback: (Rect bounds) {
+                return RadialGradient(
+                  center: Alignment.topLeft,
+                  radius: 2.5,
+                  colors: <Color>[AppColors.button_gradient1, AppColors.button_gradient2],
+                  tileMode: TileMode.repeated,
+                ).createShader(bounds);
+              },
+              child: Container(
               alignment: Alignment.center,
               margin: EdgeInsets.only(top: 10.0),
               color: Theme.of(context).accentColor,
@@ -39,6 +51,7 @@ class _RequestDetailsPageState extends State<RequestDetailsPage> {
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
+            ),
             ),
           )
         ],
