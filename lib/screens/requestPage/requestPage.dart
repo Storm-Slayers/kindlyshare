@@ -6,6 +6,7 @@ import 'package:kindlyshare/models/requests.dart';
 import 'package:kindlyshare/screens/requestDetailsPage/requestDetailsPage.dart';
 import 'package:kindlyshare/screens/requests_list.dart';
 import 'package:kindlyshare/components/colors.dart';
+import 'package:kindlyshare/components/UI_components.dart';
 
 class RequestsPage extends StatefulWidget {
   @override
@@ -27,6 +28,7 @@ class _RequestsPageState extends State<RequestsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //appBar: AppBarComponent.createAppBar('KidlyShare'),
       body: StreamBuilder<QuerySnapshot>(
           stream: _requestlist,
           builder: (context, snapshot) {
@@ -39,39 +41,41 @@ class _RequestsPageState extends State<RequestsPage> {
             }
             return SafeArea(
               child: ListView(
-                padding: EdgeInsets.symmetric(vertical: 30.0),
+                padding: EdgeInsets.symmetric(vertical: 40.0),
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 20.0, right: 120.0),
                     child: Text(
                       'How can you help today?',
                       style: TextStyle(
-                          fontSize: 30.0, fontWeight: FontWeight.bold),
+                          fontSize: 38.0, fontWeight: FontWeight.bold),
                     ),
                   ),
                   SizedBox(
-                    height: 20.0,
+                    height: 40.0,
                   ),
                   FilterTabBar(),
                   SizedBox(
                     height: 20.0,
                   ),
-                  LatestRequests(
-                    documents: snapshot.data.documents,
-                    header: 'Latest Requests',
+                  Container(
+                    padding: const EdgeInsets.only(top: 20.00, bottom: 10.00),
+                    child: LatestRequests(
+                      documents: snapshot.data.documents,
+                      header: 'Latest Requests',
+                    ),
                   ),
                   Container(
-                    padding: const EdgeInsets.only(top: 20.00, bottom: 20.00),
+                    padding: const EdgeInsets.only(top: 40.00, bottom: 20.00),
                     decoration: BoxDecoration(
                       color: Color(0xFFcac3e5),
                     ),
                     child: LatestRequests(
-                    header: 'Featured Requests',
-                    documents: snapshot.data.documents,
-                    isFeatured: true,
+                      header: 'Featured Requests',
+                      documents: snapshot.data.documents,
+                      isFeatured: true,
+                    ),
                   ),
-                  ),
-                  
                 ],
               ),
             );
@@ -206,7 +210,7 @@ class FeaturedCarousel extends StatelessWidget {
       height: 300.0,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 3,
+        itemCount: 5,
         itemBuilder: (context, index) {
           return LatestRequestTile(
             document: documents[index],

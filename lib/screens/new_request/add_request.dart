@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:kindlyshare/Services/firestoreService.dart';
 import 'package:kindlyshare/models/requests.dart';
 import 'package:kindlyshare/components/UI_components.dart';
+import 'package:kindlyshare/components/colors.dart';
 
 class AddRequestPage extends StatefulWidget {
   final Requests request;
@@ -56,12 +57,18 @@ class _AddRequestPageState extends State<AddRequestPage> {
         height: MediaQuery.of(context).size.height - 80,
         child: ListView(
           children: [
+            SizedBox(
+              height: 60.0,
+            ),
             Padding(
               padding: EdgeInsets.only(left: 16.0, right: 16.0),
               child: TextField(
                 controller: _requestListNameController,
                 decoration: InputDecoration(labelText: 'Title: '),
               ),
+            ),
+            SizedBox(
+              height: 30.0,
             ),
             Padding(
               padding: EdgeInsets.only(left: 16.0, right: 16.0),
@@ -70,6 +77,9 @@ class _AddRequestPageState extends State<AddRequestPage> {
                 decoration: InputDecoration(labelText: 'Description: '),
               ),
             ),
+            SizedBox(
+              height: 30.0,
+            ),
             Padding(
               padding: EdgeInsets.only(left: 16.0, right: 16.0),
               child: TextField(
@@ -77,16 +87,24 @@ class _AddRequestPageState extends State<AddRequestPage> {
                 decoration: InputDecoration(labelText: 'Date: '),
               ),
             ),
+            SizedBox(
+              height: 60.0,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 RaisedButton(
+                  color: Colors.blueGrey[300],
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: const Text('Cancel'),
+                  child: const Text(
+                    'Cancel',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
                 RaisedButton(
+                  color: AppColors.button_gradient2,
                     onPressed: () {
                       _requestListNameController.text.trim() == ""
                           ? NewAlertDialog.showAlertDialog(
@@ -95,7 +113,8 @@ class _AddRequestPageState extends State<AddRequestPage> {
                               "Insert a value in the title field to save.")
                           : createRequest();
                     },
-                    child: const Text('Submit'))
+                    child: const Text('Submit',
+                     style: TextStyle(color: Colors.white),))
               ],
             )
           ],
